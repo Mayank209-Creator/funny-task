@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Volcano Runner - 2D Platformer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-wrapper">
+    <!-- Top HUD Bar -->
+    <header id="hud" class="hud-container">
+      <div class="hud-left">
+        <div class="hud-badge level-badge">
+          <span class="badge-label">LEVEL</span>
+          <span id="hud-level" class="badge-value">1</span>
+        </div>
+        <div class="hud-badge deaths-badge">
+          <span class="badge-label">DEATHS</span>
+          <span id="hud-deaths" class="badge-value">0</span>
+        </div>
+      </div>
+      <div class="hud-center">
+        <span id="level-title" class="hud-title">The Molten Caverns</span>
+      </div>
+      <div class="hud-right">
+        <button id="btn-sound" class="hud-btn" title="Toggle Sound (M)" aria-label="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+        <button id="btn-restart" class="hud-btn" title="Restart Level (R)" aria-label="Restart Level">
+          <span>🔄</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Game Canvas Container -->
+    <div id="canvas-container">
+      <canvas id="gameCanvas" width="960" height="540"></canvas>
+
+      <!-- Screen Flash for Death / Level Transitions -->
+      <div id="screen-flash" class="screen-flash"></div>
+
+      <!-- Start Screen Overlay -->
+      <div id="start-screen" class="overlay-screen active">
+        <div class="modal-card">
+          <div class="title-container">
+            <h1 class="game-title">VOLCANO<br><span class="title-sub">RUNNER</span></h1>
+            <p class="tagline">Leap across the floating bricks above the inferno!</p>
+          </div>
+          <div class="instructions-card">
+            <h3>🎮 HOW TO PLAY</h3>
+            <div class="instruction-grid">
+              <div class="instruction-item">
+                <span class="key-combo"><kbd>A</kbd> <kbd>D</kbd> or <kbd>◀</kbd> <kbd>▶</kbd></span>
+                <span class="key-desc">Move Left / Right</span>
+              </div>
+              <div class="instruction-item">
+                <span class="key-combo"><kbd>W</kbd> or <kbd>▲</kbd> or <kbd>Space</kbd></span>
+                <span class="key-desc">Jump</span>
+              </div>
+              <div class="instruction-item">
+                <span class="key-combo"><kbd>R</kbd></span>
+                <span class="key-desc">Quick Restart</span>
+              </div>
+            </div>
+            <ul class="features-list">
+              <li>🧱 <strong>Normal Bricks:</strong> Solid footing in the volcanic air</li>
+              <li>⚙️ <strong>Moving Bricks:</strong> Continuously glide through the heat</li>
+              <li>⚡ <strong>Trigger Bricks:</strong> Start moving once you land on them!</li>
+              <li>🌉 <strong>Final Bridge:</strong> Step on the last platform to extend the bridge!</li>
+              <li>🔥 <strong>Lava:</strong> Instant death. Watch your footing!</li>
+            </ul>
+          </div>
+          <button id="btn-start" class="btn-primary glow-pulse">
+            PRESS ENTER TO START
+          </button>
+          <p class="press-hint">or click the button above</p>
+        </div>
+      </div>
+
+      <!-- Level Complete Overlay -->
+      <div id="level-complete-screen" class="overlay-screen hidden">
+        <div class="modal-card">
+          <div class="banner victory-banner">LEVEL COMPLETE!</div>
+          <div class="level-stats">
+            <p id="level-complete-msg">Great jump! You crossed the bridge to safety.</p>
+            <div class="stat-row">
+              <span>Current Deaths:</span>
+              <strong id="complete-deaths-count">0</strong>
+            </div>
+          </div>
+          <button id="btn-next-level" class="btn-primary glow-pulse">
+            NEXT LEVEL [ ENTER ]
+          </button>
+        </div>
+      </div>
+
+      <!-- Victory / Game Finished Overlay -->
+      <div id="victory-screen" class="overlay-screen hidden">
+        <div class="modal-card">
+          <div class="trophy-icon">🏆</div>
+          <h1 class="game-title victory-title">YOU WIN!</h1>
+          <p class="victory-subtitle">You conquered all the volcanic trials and escaped the core!</p>
+          <div class="victory-stats">
+            <div class="final-stat-card">
+              <span class="stat-label">TOTAL DEATHS</span>
+              <span id="final-deaths" class="final-stat-value">0</span>
+            </div>
+          </div>
+          <button id="btn-play-again" class="btn-primary glow-pulse">
+            PLAY AGAIN [ ENTER ]
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- On-screen Touch Controls for Mobile / Tablets -->
+    <nav id="mobile-controls" class="mobile-controls">
+      <div class="mobile-dpad">
+        <button id="touch-left" class="touch-btn" aria-label="Move Left">◀</button>
+        <button id="touch-right" class="touch-btn" aria-label="Move Right">▶</button>
+      </div>
+      <div class="mobile-actions">
+        <button id="touch-jump" class="touch-btn jump-btn" aria-label="Jump">JUMP</button>
+      </div>
+    </nav>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
